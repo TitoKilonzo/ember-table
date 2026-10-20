@@ -1,0 +1,69 @@
+@import "tailwindcss";
+
+@theme {
+  --color-vanilla: #fff7e8;
+  --color-paper: #fffcf6;
+  --color-ember: #c6532c;
+  --color-ember-dark: #9f3f20;
+  --color-ember-light: #f3d6c5;
+  --color-ink: #29241f;
+  --color-olive: #667348;
+  --font-sans: Arial, Helvetica, sans-serif;
+  --font-display: Georgia, "Times New Roman", serif;
+  --shadow-soft: 0 18px 50px rgba(61, 42, 25, 0.08);
+  --radius-4xl: 2rem;
+}
+
+:root {
+  --vanilla: #fff7e8;
+  --paper: #fffcf6;
+  --ember: #c6532c;
+  --ember-dark: #9f3f20;
+  --ink: #29241f;
+  --muted: #82796f;
+  --line: rgba(61, 42, 25, 0.12);
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--vanilla);
+  color: var(--ink);
+  font-family: Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+button, input, textarea, select { font: inherit; }
+button { cursor: pointer; }
+button:disabled { cursor: not-allowed; opacity: .55; }
+::selection { background: rgba(198, 83, 44, .19); }
+
+@layer components {
+  .page-shell { @apply mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-10; }
+  .eyebrow { @apply text-[10px] font-bold uppercase tracking-[.23em] text-ember; }
+  .serif-title { font-family: Georgia, "Times New Roman", serif; letter-spacing: -.055em; }
+  .button-primary { @apply inline-flex items-center justify-center gap-2 rounded-full bg-ember px-5 py-3 text-sm font-bold text-white transition duration-200 hover:-translate-y-0.5 hover:bg-ember-dark focus:outline-none focus:ring-4 focus:ring-ember/20; }
+  .button-secondary { @apply inline-flex items-center justify-center gap-2 rounded-full border border-black/10 bg-white/70 px-5 py-3 text-sm font-bold text-ink transition hover:border-ember/50 hover:bg-white; }
+  .card { @apply overflow-hidden rounded-[1.6rem] border border-black/[.055] bg-paper shadow-[0_10px_40px_rgba(65,43,25,0.035)]; }
+  .input-field { @apply mt-1.5 w-full rounded-xl border border-black/10 bg-white px-3.5 py-3 text-sm outline-none transition placeholder:text-stone-400 focus:border-ember focus:ring-4 focus:ring-ember/10; }
+}
+
+.display-wordmark { font-family: Georgia, "Times New Roman", serif; letter-spacing: -.07em; }
+.hero-orbit { position: absolute; border: 1px solid rgba(198,83,44,.18); border-radius: 9999px; pointer-events: none; }
+.hero-photo { box-shadow: 0 30px 90px rgba(90,49,25,.18); }
+.hero-photo img { width: 100%; height: 100%; object-fit: cover; }
+.menu-card-photo { overflow: hidden; background: #f1e4d1; }
+.menu-card-photo img { width: 100%; height: 100%; object-fit: cover; transition: transform .55s cubic-bezier(.2,.7,.2,1); }
+.menu-card:hover .menu-card-photo img { transform: scale(1.055); }
+.menu-scroll { scrollbar-width: none; }
+.menu-scroll::-webkit-scrollbar { display: none; }
+.panel-backdrop { animation: fade-in .18s ease-out both; }
+.panel-card { animation: slide-up .24s cubic-bezier(.2,.7,.2,1) both; }
+@keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes slide-up { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes float { 0%, 100% { transform: translateY(0) rotate(-3deg); } 50% { transform: translateY(-10px) rotate(-1deg); } }
+.floating-stamp { animation: float 5s ease-in-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}
