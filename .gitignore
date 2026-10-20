@@ -4,6 +4,7 @@ out/
 coverage/
 .env
 .env.local
+.env.example
 .env.*.local
 *.log
 .DS_Store
